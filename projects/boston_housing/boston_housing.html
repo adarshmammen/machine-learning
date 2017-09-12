@@ -11806,7 +11806,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[70]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Import libraries necessary for this project</span>
@@ -11881,23 +11881,24 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Minimum price of the data</span>
-<span class="n">minimum_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="c1"># TODO: Minimum price of the data</span>
+<span class="n">minimum_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># TODO: Maximum price of the data</span>
-<span class="n">maximum_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">maximum_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># TODO: Mean price of the data</span>
-<span class="n">mean_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">mean_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># TODO: Median price of the data</span>
-<span class="n">median_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+<span class="n">median_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># TODO: Standard deviation of prices of the data</span>
-<span class="n">std_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="n">std_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 <span class="c1"># Show the calculated statistics</span>
 <span class="k">print</span> <span class="s2">&quot;Statistics for Boston housing dataset:</span><span class="se">\n</span><span class="s2">&quot;</span>
 <span class="k">print</span> <span class="s2">&quot;Minimum price: ${:,.2f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">minimum_price</span><span class="p">)</span>
@@ -11925,7 +11926,7 @@ Minimum price: $105,000.00
 Maximum price: $1,024,800.00
 Mean price: $454,342.94
 Median price $438,900.00
-Standard deviation of prices: $165,340.28
+Standard deviation of prices: $165,171.13
 </pre>
 </div>
 </div>
@@ -14685,10 +14686,10 @@ HMhQAAAAAElFTkSuQmCC
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong>
 When the model is trained with a maximum depth of 1, does the model suffer from high bias or from high variance?</p>
-<blockquote><p>The model with a max depth of 1 suffers a high bias as it is underfit.</p>
+<blockquote><p>The model with a max depth of 1 suffers a high bias as it is underfit. From the decision tree Regressor Complexity performance we can see that at max depth 1, the model has a poor validation and testing score, both slightly below 0.5 which is almost truly random.</p>
 </blockquote>
 <p>How about when the model is trained with a maximum depth of 10? What visual cues in the graph justify your conclusions?</p>
-<blockquote><p>The model suffers a high variance/ overfitting with a larger max depth. The visual que that justifies this is the model converging to 1 which means that it is predicting every point perfectly.</p>
+<blockquote><p>The model suffers a high variance/ overfitting with a larger max depth. The visual que that justifies this when the training score converges to 1 which implies that the model is predicting every training point perfectly but the testing score diverges away moving to a lower value. This implies that the model has 'learnt' the training set really well but does poorly with new or unseen data.</p>
 </blockquote>
 
 </div>
@@ -14786,10 +14787,10 @@ We must first select a finite set of values for the 2 parameters, this essential
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
-<blockquote><p>In machine learning we first split our data into 3 sets: the training set, the cross validation set and the testing set.
-In the K-Fold cross validation the cross validation sample is randomly partitioned into k subsamples. A subsample is retained for testing the model, and the remaining subsamples are used as training data.</p>
+<blockquote><p>In machine learning we first split our data into 2 sets: the training set and the testing set.
+In the K-Fold cross validation the training set is randomly partitioned into k subsamples. A subsample is retained for testing the model, and the remaining subsamples are used as training data.</p>
 <p>The cross-validation process is then repeated k times, with each of the k subsamples used exactly once as the validation data. The results from the folds are averaged to produce a single estimation. 
-Cross validation is used to tune the hyperparameters to compliment grid search. By using K-Fold cross validation with grid search we can prevent the shortcomings of overfitting the model with the training and testing data.</p>
+Cross validation is used to tune the hyperparameters to compliment grid search. By using K-Fold cross validation with grid search we can prevent the shortcomings of overfitting the model with the training set. The advantage of using a K-fold approach over a single fold is that we can prevent overfitting the hyperparameters to that particular 'fold', and hence by taking the average of the k-folds, we make our parameters more robust to overfitting.</p>
 </blockquote>
 
 </div>
